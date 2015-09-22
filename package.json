@@ -1,7 +1,7 @@
 {
   "name": "tag-entry",
   "version": "1.0.0",
-  "description": "Conveniently tag arbitrary objects. pull-stream/leveldb/browserify ffriendly.",
+  "description": "Conveniently tag arbitrary objects in the browser. pull-stream/leveldb/browserify ffriendly.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,5 +23,15 @@
   "bugs": {
     "url": "https://github.com/regular/tag-entry/issues"
   },
-  "homepage": "https://github.com/regular/tag-entry#readme"
+  "homepage": "https://github.com/regular/tag-entry#readme",
+  "devDependencies": {
+    "browserify": "^11.1.0",
+    "level-mem": "^0.18.0",
+    "tape": "^4.2.0",
+    "testling": "^1.7.1"
+  },
+  "dependencies": {
+    "pull-pushable": "^1.1.4",
+    "pull-stream": "^2.28.4"
+  }
 }
