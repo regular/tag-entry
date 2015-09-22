@@ -1,0 +1,27 @@
+{
+  "name": "tag-entry",
+  "version": "1.0.0",
+  "description": "Conveniently tag arbitrary objects. pull-stream/leveldb/browserify ffriendly.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/regular/tag-entry.git"
+  },
+  "keywords": [
+    "no-framework",
+    "pull-stream",
+    "leveldb",
+    "tag",
+    "entry",
+    "input"
+  ],
+  "author": "Jan Bölsche <jan@lagomorph.de> (http://regular.codes)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/regular/tag-entry/issues"
+  },
+  "homepage": "https://github.com/regular/tag-entry#readme"
+}
