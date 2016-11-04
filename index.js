@@ -4,6 +4,11 @@ var events = require('fdom/next');
 var element = require('element');
 var debounce = require('pull-debounce');
 
+var insertcss = require('insert-css');
+var fs = require('fs');
+
+insertcss(fs.readFileSync('./styles.css'));
+
 function append(el, content) {
     if (typeof content === 'string') {
         content = element(content);
@@ -16,13 +21,15 @@ module.exports = function(el, id, tagStream, createSuggestionStream, opts) {
     opts = opts || {};
     var updateStream = pushable();
     var tags = {};
+    var container = document.createElement('div');
+    el.appendChild(container);
+    container.classList.add('tag-entry');
     var ul = document.createElement('ul');
-    el.appendChild(ul);
-    ul.classList.add('tag-entry');
+    container.appendChild(ul);
 
     var makeTagElement = opts.makeTagElement || function(tagName, forSuggestionBox) {
         var el = document.createElement("span");
-        el.innerHTML = tagName + '<button class="remove-tag">X</button></span>';
+        el.innerHTML = tagName + '<button class="remove-tag"></button></span>';
         console.log(el);
         return el;
     };
@@ -31,7 +38,7 @@ module.exports = function(el, id, tagStream, createSuggestionStream, opts) {
         return '<input type="text">';
     };
 
-    var input = append(el, makeInputElement());
+    var input = append(container, makeInputElement());
 
     // TODO: if the content of our input field changes
     // we need to generate suggestions
@@ -86,13 +93,13 @@ module.exports = function(el, id, tagStream, createSuggestionStream, opts) {
                 var button = li.getElementsByClassName('remove-tag')[0];
                 if (button) {
                     button.addEventListener('click', function() {
-                       updateStream.removeTag(o.key);
+                       updateStream.removeTag(o.value);
                     });
                 }
                 append(ul, li);
             } else { // type is delete, it seems.
-                // TODO: html-sanitize the key!
-                var item = el.querySelector('li[name=' + o.key+']');
+                var item = el.querySelector('li[name=' + o.key + ']');
+                console.log('item', item);
                 ul.removeChild(item);
                 delete tags[o.key];
             }
@@ -101,7 +108,9 @@ module.exports = function(el, id, tagStream, createSuggestionStream, opts) {
     );
 
     function sanitize(name) {
-        return encodeURIComponent(name).replace('!','%'+("!".charCodeAt(0).toString(16)));
+        var result = 'hex' + (new Buffer(name)).toString('hex');
+        console.log('name', name, 'sanitized', result);
+        return result;
     }
 
     updateStream.addTag = function(tagName) {

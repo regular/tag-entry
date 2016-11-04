@@ -13,9 +13,9 @@ function createTag(name) {
 test('should call makeTagElement() for each tag', function(t) {
     t.plan(3);
     var tags = [
-        {key: "a", value: 'foo'},
-        {key: "b", value: 'bar'},
-        {key: "c", value: 'baz'}
+        {key: "hex61", value: 'a'},
+        {key: "hex62", value: 'b'},
+        {key: "hex63", value: 'c'}
     ];
     var i = 0;
     var e = entry(document.body, 'myObj', pull.values(tags), null, {
@@ -30,9 +30,9 @@ test('addTag() should call makeTagElement() and create a put', function(t) {
     t.plan(5);
     var db = level('test');
     var tags = [
-        {key: "a", value: 'foo', type: 'put'},
-        {key: "b", value: 'bar', type: "put"},
-        {key: "c", value: 'baz', type: "put"}
+        {key: "hex61", value: 'a', type: 'put'},
+        {key: "hex62", value: 'b', type: "put"},
+        {key: "hex63", value: 'c', type: "put"}
     ];
     var i = 0;
     pull(pull.values(tags), pl.write(db, {windowSize: 1}));
@@ -49,7 +49,7 @@ test('addTag() should call makeTagElement() and create a put', function(t) {
         pull.through(function(o) {
             t.deepEqual(o, {
                 type: 'put',
-                key: 'd',
+                key: 'hex64',
                 value: 'd'
             });
         }),
@@ -62,9 +62,9 @@ test('removeTag() should create a del and remove the li', function(t) {
     document.body.innerHTML = '';
     var db = level('test');
     var tags = [
-        {key: "a", value: 'foo', type: 'put'},
-        {key: "b", value: 'bar', type: "put"},
-        {key: "c", value: 'baz', type: "put"}
+        {key: "hex61", value: 'a', type: 'put'},
+        {key: "hex62", value: 'b', type: "put"},
+        {key: "hex63", value: 'c', type: "put"}
     ];
     var i = 0;
     pull(pull.values(tags), pl.write(db, {windowSize: 1}));
@@ -75,7 +75,7 @@ test('removeTag() should create a del and remove the li', function(t) {
         pull.through(function(o) {
             t.deepEqual(o, {
                 type: 'del',
-                key: 'a'
+                key: 'hex61'
             });
         }),
         pl.write(db, {windowSize: 1})

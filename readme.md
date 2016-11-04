@@ -4,6 +4,8 @@
 TODO
 -----
 
+* some styling
+* clear input box after adding tag
 * implement suggestions
 * add demo code to readme
 * add demo in github pages branch
