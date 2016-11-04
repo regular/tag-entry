@@ -34,6 +34,7 @@
   "dependencies": {
     "element": "^0.1.4",
     "fdom": "^1.2.0",
+    "htmlentities": "^1.0.0",
     "insert-css": "^1.0.0",
     "pull-debounce": "^1.0.2",
     "pull-pushable": "^1.1.4",

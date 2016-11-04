@@ -3,6 +3,7 @@ var pushable = require('pull-pushable');
 var events = require('fdom/next');
 var element = require('element');
 var debounce = require('pull-debounce');
+var htmlentities = require('htmlentities');
 
 var insertcss = require('insert-css');
 var fs = require('fs');
@@ -89,7 +90,7 @@ module.exports = function(el, id, tagStream, createSuggestionStream, opts) {
                 tags[o.key] = o.value;
                 var li = document.createElement('li');
                 li.setAttribute("name", o.key); 
-                li.appendChild(makeTagElement(o.value));
+                li.appendChild(makeTagElement(htmlentities.encode(o.value)));
                 var button = li.getElementsByClassName('remove-tag')[0];
                 if (button) {
                     button.addEventListener('click', function() {
