@@ -1,0 +1,45 @@
+.tag-entry {
+    border: 1px solid gray;
+    padding: .3em;
+    display: inline-block;
+}
+
+.tag-entry input {
+    border: none;
+    margin: 0;
+}
+
+.tag-entry ul {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tag-entry li {
+    border-radius: 4px;
+    background-color: lightgray;
+    display: inline-block;
+    margin-right: .5em;
+    padding: .2em;
+    padding-left: .4em;
+    white-space: nowrap;
+}
+
+.tag-entry li button {
+    margin: .3em;
+    margin-left: .2em;
+    border-radius: 50%;
+    border: none;
+    color: darkgray;
+    font-size: .5em;
+    width: 1.2em;
+    height: 1.2em;
+    padding: 0;
+    margin-left: .1em;
+}
+
+.tag-entry li button::before {
+    content: "\2715";
+}
+
